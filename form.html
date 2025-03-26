@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Medical Center Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f9fb;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #007B83;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 5px;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #007B83;
+      background-color: #f0fdfc;
+      outline: none;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #007B83;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005f63;
+    }
+
+    #confirmation {
+      margin-top: 20px;
+      padding: 15px;
+      border-left: 5px solid #28a745;
+      background-color: #d4edda;
+      color: #155724;
+      border-radius: 5px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Medical Center Entry Form</h1>
+    <form id="medicalForm">
+
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" name="fullName" placeholder="John Doe" required>
+
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" required>
+
+      <label for="gender">Gender</label>
+      <select id="gender" name="gender" required>
+        <option value="">-- Select Gender --</option>
+        <option value="Female">Female</option>
+        <option value="Male">Male</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="phone">Contact Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="0412 345 678" required>
+
+      <label for="visitDate">Visit Date</label>
+      <input type="date" id="visitDate" name="visitDate" required>
+
+      <label for="doctor">Doctor</label>
+      <select id="doctor" name="doctor" required>
+        <option value="">-- Choose a Doctor --</option>
+        <option value="Dr. Smith">Dr. Smith</option>
+        <option value="Dr. Johnson">Dr. Johnson</option>
+        <option value="Dr. Patel">Dr. Patel</option>
+      </select>
+
+      <label for="reason">Reason for Visit</label>
+      <textarea id="reason" name="reason" rows="4" placeholder="Describe your symptoms..." required></textarea>
+
+      <button type="submit">Submit</button>
+
+    </form>
+
+    <div id="confirmation" class="hidden"></div>
+  </div>
+
+  <script>
+    document.getElementById('medicalForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('fullName').value;
+      const dob = document.getElementById('dob').value;
+      const gender = document.getElementById('gender').value;
+      const phone = document.getElementById('phone').value;
+      const visitDate = document.getElementById('visitDate').value;
+      const doctor = document.getElementById('doctor').value;
+      const reason = document.getElementById('reason').value;
+
+      const confirmationMessage = `
+        <h2>Form Submitted Successfully!</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Date of Birth:</strong> ${dob}</p>
+        <p><strong>Gender:</strong> ${gender}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Visit Date:</strong> ${visitDate}</p>
+        <p><strong>Doctor:</strong> ${doctor}</p>
+        <p><strong>Reason:</strong> ${reason}</p>
+      `;
+
+      const confirmationDiv = document.getElementById('confirmation');
+      confirmationDiv.innerHTML = confirmationMessage;
+      confirmationDiv.classList.remove('hidden');
+
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>
